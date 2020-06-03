@@ -13,6 +13,7 @@ This program is following a tutorial as a "Hello World" program into the world o
 - Terminal: `scrapy runspider BrickSetSpider.py`
 
 #### Sample Output
+(PS: for a single page only)
 ```
 2020-06-02 22:42:21 [scrapy.utils.log] INFO: Scrapy 2.1.0 started (bot: scrapybot)
 2020-06-02 22:42:21 [scrapy.utils.log] INFO: Versions: lxml 4.3.4.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.4 (default, Aug 13 2019, 15:17:50) - [Clang 4.0.1 (tags/RELEASE_401/final)], pyOpenSSL 19.0.0 (OpenSSL 1.1.1d  10 Sep 2019), cryptography 2.7, Platform Darwin-18.7.0-x86_64-i386-64bit

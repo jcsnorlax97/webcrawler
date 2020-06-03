@@ -8,6 +8,9 @@ class BrickSetSpider(scrapy.Spider):
         # [PRINT] for learning purpose
         # print(response) # "<200 https://brickset.com/sets/year-2016>"
 
+        # -----------------------------------------------------
+        # Crawling a Single Page
+        # -----------------------------------------------------
         SET_SELECTOR = '.set' # refers to CSS class name (e.g. <article class='set'>...</article>)
         for brickset in response.css(SET_SELECTOR): 
             # [PRINT] for learning purpose            
@@ -31,3 +34,19 @@ class BrickSetSpider(scrapy.Spider):
                 "minifigs": brickset.xpath(MINIFIGS_SELECTOR).extract_first(),
                 "image": brickset.css(IMAGE_SELECTOR).extract_first(),
             }
+
+        # -----------------------------------------------------
+        # Crawling Multiple Pages
+        # -----------------------------------------------------
+        NEXT_PAGE_SELECTOR = '.next a ::attr(href)' # refers to the <a>...</a> tag inside of <li class="next">...</li>, and get the href
+        next_page = response.css(NEXT_PAGE_SELECTOR).extract_first()
+        if next_page:
+            # [PRINT] for learning purpose   
+            # print(response.url) # "https://brickset.com/sets/year-2016"
+            # print(next_page) # "https://brickset.com/sets/year-2016/page-2"
+            # print(response.urljoin(next_page)) # "https://brickset.com/sets/year-2016/page-2"
+
+            yield scrapy.Request(
+                response.urljoin(next_page),
+                callback=self.parse
+            )
